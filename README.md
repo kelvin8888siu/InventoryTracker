@@ -1,5 +1,4 @@
 # InventoryTracker
-Inventory Tracker Web Application
 
 ## About this Project
 
