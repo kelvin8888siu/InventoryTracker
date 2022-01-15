@@ -21,7 +21,7 @@ Multiple frameworks were utilized during the development of this web API but com
 
 <img width="792" alt="Screen Shot 2022-01-15 at 3 19 23 PM" src="https://user-images.githubusercontent.com/93673736/149636528-c267c433-454c-4c38-8dc6-35c1eeeb9aed.png">
 
-A relational database was chosen for this project. 
+A relational database was chosen for this project. The file named InventoryTracker.sql will contain the schema for the database above. Mock data is also included in the script, which will be neccessary when testing the web API with Postman.
 
 The Products table will store all the information regarding the specific attributes of a particular inventory item. More specifically, each inventory item will have the following attributes: product ID, product name, quantity in stock, price per unit and currency code. The ProductLog table will keep a history of all the quantity updates that have been made to items in the Products table. 
 
@@ -83,7 +83,8 @@ Download and install the latest version of [MySQL Workbench](https://dev.mysql.c
 
 6.	The web API is now set up on IntelliJ. Click on the Run button on the right corner of IntelliJ to start running the web API.
     
-    <img width="406" alt="Screen Shot 2022-01-15 at 4 30 01 PM" src="https://user-images.githubusercontent.com/93673736/149638299-751cf911-a97a-40c0-ba78- 86a6b2f70b24.png">
+    <img width="305" alt="Screen Shot 2022-01-15 at 5 15 03 PM" src="https://user-images.githubusercontent.com/93673736/149639339-18dc3985-f286-4168-a765-fab0cac21af7.png">
+
 
 
 ### Running Postman:
