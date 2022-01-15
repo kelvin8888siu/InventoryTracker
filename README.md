@@ -1,5 +1,18 @@
 # InventoryTracker
 
+### Table of Contents
+1. [About this Project](#about)
+    -  [Project Overview](#overview)
+        - [Database](#db)
+        - [API Endpoints and Methods](#api)
+    - [Built With](#builtwith)
+2. [Getting Started](#started)
+    -   [Prerequisites](#preq)
+    -   [Installation](#install)
+    -   [Running Postman](#rp)
+3. [Contact](#contact)
+
+<a name=about></a>
 ## About this Project
 
 This is a [coding challenge](https://docs.google.com/document/d/1z9LZ_kZBUbg-O2MhZVVSqTmvDko5IJWHtuFmIu_Xg1A/edit) for the Shopify (Summer 2022) backend developer internship position.
@@ -11,12 +24,14 @@ In this project, an inventory tracking web API was developed for a logistics com
 4.	Viewing all inventory items or a specific inventory item
 5.	Exporting all inventory data into a CSV file
 
+<a name=overview></a>
 ### Project Overview:
 
 <img width="623" alt="Screen Shot 2022-01-15 at 3 14 14 PM" src="https://user-images.githubusercontent.com/93673736/149636404-a8c88c9b-9cb7-4be4-a8c1-3a43d77fc657.png">
 
 Multiple frameworks were utilized during the development of this web API but communicating with the API requires the use of the Postman API platform. Postman is an API platform used to ensure that the process of sending and recieving data from our web API is functioning properly. It is important to consider that the Postman API platform is simply a way to communicate and interact with our web API. Postman is not a tool for performance testing or for dealing with user interactions.
 
+<a name=db></a>
 #### Database:
 
 <img width="792" alt="Screen Shot 2022-01-15 at 3 19 23 PM" src="https://user-images.githubusercontent.com/93673736/149636528-c267c433-454c-4c38-8dc6-35c1eeeb9aed.png">
@@ -27,23 +42,28 @@ The Products table will store all the information regarding the specific attribu
 
 The ProductLog table was initially created for the purpose of implementing a feature where a report on the most in-stock and out-of-stock items in the inventory is generated. However, this feature was abandoned halfway through the production of the web API. Instead, a feature where the inventory data can be exported to a CSV file was implemented. In the end, the ProductLog table was kept in the program because the information that can be derived from the table can ultimately be useful for other feature implementations in the future.
 
+<a name=api></a>
 #### API Endpoints and Methods:
 
 <img width="575" alt="Screen Shot 2022-01-15 at 4 03 29 PM" src="https://user-images.githubusercontent.com/93673736/149637634-daa3991d-e9aa-4f07-b4d8-84c273495880.png">
 
-### Built with:
+<a name=builtwith></a>
+### Built With:
 -	[MySQL](https://www.mysql.com/)
 -	[Spring Boot](https://spring.io/projects/spring-boot)
 -	[Swagger](https://swagger.io/)
 
+<a name=started></a>
 ## Getting Started
 
 Below are instructions and steps for running the web API as well as Postman.
 
+<a name=preq></a>
 ### Prerequisites
 
 Download and install the latest version of [MySQL Workbench](https://dev.mysql.com/downloads/workbench/), [IntelliJ](https://www.jetbrains.com/idea/download/#section=mac), and [Postman](https://www.postman.com/downloads/).
 
+<a name=install></a>
 ### Installation
 1.	Download the code by either:
     - Downloading the ZIP file and unzip the file. Open the unzip file using IntelliJ. 
@@ -86,7 +106,7 @@ Download and install the latest version of [MySQL Workbench](https://dev.mysql.c
     <img width="305" alt="Screen Shot 2022-01-15 at 5 15 03 PM" src="https://user-images.githubusercontent.com/93673736/149639339-18dc3985-f286-4168-a765-fab0cac21af7.png">
 
 
-
+<a name=rp></a>
 ### Running Postman:
 
 1. To interact with the web API, open Postman and import the file named Inventory API.postman_collection.json. Please follow the steps below:
@@ -121,6 +141,17 @@ Download and install the latest version of [MySQL Workbench](https://dev.mysql.c
    Click on the exportCSV tab on the left side bar > Click "Send" > Click on the "Save Response" dropdown button > Click "Save to a file"
    
    <img width="1038" alt="Screen Shot 2022-01-15 at 5 10 27 PM" src="https://user-images.githubusercontent.com/93673736/149639237-e0c8e0f6-ff2f-40c5-b267-a2fe6b8878cc.png">
+
+<a name=contact></a>
+## Contact
+
+Work email: kelvinsiu8888work@gmail.com
+
+School email: siu.ka@northeastern.edu
+
+Project link: https://github.com/kelvin8888siu/InventoryTracker
+
+Linkedin: https://www.linkedin.com/in/kelvin-siu-7b6297160/
 
 
 
