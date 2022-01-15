@@ -2,43 +2,47 @@
 
 ## About this Project
 
-An inventory tracking web application that consists of the following functionalities/features:
+This is a [coding challenge](https://docs.google.com/document/d/1z9LZ_kZBUbg-O2MhZVVSqTmvDko5IJWHtuFmIu_Xg1A/edit) for the Shopify (Summer 2022) backend developer internship position.
+
+In this project, an inventory tracking web API was developed for a logistics company. The API consists of the following functionalities/features:
 1.	Creating inventory items
 2.	Editing/Updating inventory items
 3.	Deleting specific inventory items
 4.	Viewing all inventory items or a specific inventory item
 5.	Exporting all inventory data into a CSV file
 
-### Demo:
-https://user-images.githubusercontent.com/93673736/149422527-f6781251-d36f-4b2a-b061-138c1542fd8e.mov
+### Project Overview:
 
-### Web Page Screenshots:
+<img width="623" alt="Screen Shot 2022-01-15 at 3 14 14 PM" src="https://user-images.githubusercontent.com/93673736/149636404-a8c88c9b-9cb7-4be4-a8c1-3a43d77fc657.png">
 
-#### Inventory Page:
-![image](https://user-images.githubusercontent.com/93673736/149423112-4228656b-32ff-49f9-80f8-6ddeead6ca00.png)
+Multiple frameworks were utilized during the development of this web API but communicating with the API required the use of the the Postman API platform. Postman is an API platform used to ensure that the process of sending and recieving data from our web API is functioning properly. It is important to consider that the Postman API platform is simply a way to communicate and interact with our web API. Postman is not a tool for performance testing or for dealing with user interactions.
 
+#### Database:
 
-#### Add Product Page:
-![image](https://user-images.githubusercontent.com/93673736/149423175-3b605f76-43ca-4575-83e4-c13ec9edaa7e.png)
+<img width="792" alt="Screen Shot 2022-01-15 at 3 19 23 PM" src="https://user-images.githubusercontent.com/93673736/149636528-c267c433-454c-4c38-8dc6-35c1eeeb9aed.png">
 
+A relational database was chosen for this project. 
 
-#### Edit/Update Product Page:
-![image](https://user-images.githubusercontent.com/93673736/149423188-e3adafdb-0112-453e-a885-1517bdd4a36b.png)
+The Products table will store all the information regarding the specific attributes of a particular inventory item. More specifically, each inventory item will have the following attributes: product ID, product name, quantity in stock, price per unit and currency code. The ProductLog table will keep a history of all the quantity updates that have been made to items in the Products table. 
+
+The ProductLog table was initially created for the purpose of implementing a feature where a report on the most in-stock and out-of-stock items in the inventory is generated. However, this feature was abandoned halfway through the production of the web API. Instead, a feature where the inventory data can be exported to a CSV file was implemented. In the end, the ProductLog table was kept in the program because the information that can be derived from the table can ultimately be useful for other feature implementations in the future.
+
+#### API Endpoints and Methods:
+
+<img width="575" alt="Screen Shot 2022-01-15 at 4 03 29 PM" src="https://user-images.githubusercontent.com/93673736/149637634-daa3991d-e9aa-4f07-b4d8-84c273495880.png">
 
 ### Built with:
 -	[MySQL](https://www.mysql.com/)
 -	[Spring Boot](https://spring.io/projects/spring-boot)
 -	[Swagger](https://swagger.io/)
--	[Bootstrap](https://getbootstrap.com/)
--	[Thymeleaf](https://www.thymeleaf.org/)
 
 ## Getting Started
 
-Below are instructions and steps for running the web application locally.
+Below are instructions and steps for running the web API.
 
 ### Prerequisites
 
-Download and install the latest version of [MySQL Workbench](https://dev.mysql.com/downloads/workbench/) and [IntelliJ](https://www.jetbrains.com/idea/download/#section=mac).
+Download and install the latest version of [MySQL Workbench](https://dev.mysql.com/downloads/workbench/), [IntelliJ](https://www.jetbrains.com/idea/download/#section=mac), and [Postman](https://www.postman.com/downloads/).
 
 ### Installation
 1.	Download the code by either:
@@ -77,7 +81,46 @@ Download and install the latest version of [MySQL Workbench](https://dev.mysql.c
 
     ![image](https://user-images.githubusercontent.com/93673736/149424302-78d38de0-4fd6-4f1c-84bd-0e9f491cda1c.png)
 
-6.	At this point everything is set up properly! Run the program! 
+6.	The web API is now set up on IntelliJ. Click on the Run button on the right corner of IntelliJ to start running the web API.
+    
+    <img width="406" alt="Screen Shot 2022-01-15 at 4 30 01 PM" src="https://user-images.githubusercontent.com/93673736/149638299-751cf911-a97a-40c0-ba78- 86a6b2f70b24.png">
+
+
+### Running Postman:
+
+1. To interact with the web API, open Postman and import the file named Inventory API.postman_collection.json. Please follow the steps below:
+    
+   Open Postman > File > Import > Drag the file named: Inventory API.postman_collection.json
+   
+   <img width="745" alt="Screen Shot 2022-01-15 at 4 38 04 PM" src="https://user-images.githubusercontent.com/93673736/149638505-81a89b47-e539-47cb-84f8-b710a2a68268.png">
+   
+2. To understand the tests that have been written for each endpoint, click on the dropdown button next to the Inventory API collection on the left sidebar. Click on any of the endpoints or http method tabs desired below. To see the tests, click on "Tests" (Note: for POST and PUT methods, "Body" and "Pre-request Script" can also provide additional information about the underlying testing mechanism).  
+
+    <img width="1054" alt="Screen Shot 2022-01-15 at 5 06 01 PM" src="https://user-images.githubusercontent.com/93673736/149639152-2b382ba3-b47a-4fe2-983b-ddbbd37ba8aa.png">
+
+3. To run the all automated tests, click on the Runner button on the lower right corner of the Postman application.
+
+   <img width="872" alt="Screen Shot 2022-01-15 at 4 42 44 PM" src="https://user-images.githubusercontent.com/93673736/149638617-1c576546-0379-4307-aba9-f06f23cd3d7c.png">
+
+
+4.  Click and drag the Inventory API collection from the left sidebar and drop the collection into the right side console that states "Drag a collection or folder from your sidebar to get started".
+
+    <img width="932" alt="Screen Shot 2022-01-15 at 4 48 27 PM" src="https://user-images.githubusercontent.com/93673736/149638771-4cc1743f-afe4-45e7-81fd-7bc3caab4e8d.png">
+
+5. Change the iteration from 1 to 10 and check "Save responses". 
+
+    <img width="685" alt="Screen Shot 2022-01-15 at 4 51 22 PM" src="https://user-images.githubusercontent.com/93673736/149638830-41d601b9-48b7-4ca9-a539-32677b739b7d.png">
+
+6. Click "Run Inventory API" to run all the automated tests. After running the test, Postman will allow for viewing the results or result summary. Results can also be exported.
+
+    <img width="1060" alt="Screen Shot 2022-01-15 at 5 11 08 PM" src="https://user-images.githubusercontent.com/93673736/149639258-d439fa53-6bbe-4daf-81b0-62608ac49131.png">
+
+7. To download the CSV file.
+
+   Click on the exportCSV tab on the left side bar > Click "Send" > Click on the "Save Response" dropdown button > Click "Save to a file"
+   
+   <img width="1038" alt="Screen Shot 2022-01-15 at 5 10 27 PM" src="https://user-images.githubusercontent.com/93673736/149639237-e0c8e0f6-ff2f-40c5-b267-a2fe6b8878cc.png">
+
 
 
 
