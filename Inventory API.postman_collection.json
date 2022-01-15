@@ -1,0 +1,315 @@
+{
+	"info": {
+		"_postman_id": "f449dd32-ac7e-482d-a7bf-ff9b586c731e",
+		"name": "Inventory API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add a product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);",
+							"});",
+							"",
+							"const requestBody = JSON.parse(pm.request.body.raw);",
+							"pm.globals.set(\"poName\", requestBody.poName);",
+							"pm.globals.set(\"quantity\", parseInt(requestBody.quantity));",
+							"pm.globals.set(\"currency\", requestBody.currency);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const productID = Math.floor((Math.random()*(1000 - 11) + 11));",
+							"pm.globals.set(\"productID\", productID);",
+							"",
+							"const price = _.random(1, 10000, true).toFixed(2);",
+							"pm.globals.set(\"price\", price);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productID\" : {{productID}},\n    \"poName\" : \"{{$randomProductName}}\",\n    \"quantity\": {{$randomInt}},\n    \"price\": {{price}},\n    \"currency\": \"{{$randomCurrencyCode}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/products",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a single product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const response = pm.response.json();",
+							"const expected_ID = pm.globals.get(\"productID\");",
+							"const expected_Name = pm.globals.get(\"poName\");",
+							"const expected_Price = pm.globals.get(\"price\");",
+							"const expected_Quantity = pm.globals.get(\"quantity\");",
+							"const expected_Currency = pm.globals.get(\"currency\");",
+							"pm.test(\"Status should be OK\", () => {",
+							"    pm.expect(response.productID).to.eql(expected_ID);",
+							"    pm.expect(response.poName).to.eql(expected_Name);",
+							"    pm.expect(parseFloat(response.price)).to.eql(parseFloat(expected_Price));",
+							"    pm.expect(response.quantity).to.eql(expected_Quantity);",
+							"    pm.expect(response.currency).to.eql(expected_Currency);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/products/:productID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products",
+						":productID"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					],
+					"variable": [
+						{
+							"key": "productID",
+							"value": "{{productID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"     pm.response.to.have.status(204);",
+							"});",
+							"",
+							"const requestBody = JSON.parse(pm.request.body.raw);",
+							"pm.globals.set(\"poName\", requestBody.poName);",
+							"pm.globals.set(\"quantity\", parseInt(requestBody.quantity));",
+							"pm.globals.set(\"currency\", requestBody.currency);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const price = _.random(1, 10000, true).toFixed(2);",
+							"pm.globals.set(\"price\", price);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productID\" : {{productID}},\n    \"poName\" : \"{{$randomProductName}}\",\n    \"quantity\": {{$randomInt}},\n    \"price\": {{price}},\n    \"currency\": \"{{$randomCurrencyCode}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/products/:productID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products",
+						":productID"
+					],
+					"variable": [
+						{
+							"key": "productID",
+							"value": "{{productID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "exportCSV",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/products/exportToCSV",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products",
+						"exportToCSV"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"     pm.response.to.have.status(204);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/products/:productID",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products",
+						":productID"
+					],
+					"variable": [
+						{
+							"key": "productID",
+							"value": "{{productID}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const expected = [{\"productID\":1,\"poName\":\"Small Computer Desk 32 Inch\",\"quantity\":50,\"price\":79.99,\"currency\":\"USD\"},{\"productID\":2,\"poName\":\"Samsung - 55 inch Q70A QLED 4K Ultra HD HDR Smart TV\",\"quantity\":25,\"price\":1127.0,\"currency\":\"HKD\"},{\"productID\":3,\"poName\":\"Eccho Dot (4th) Gen\",\"quantity\":15,\"price\":71.45,\"currency\":\"USD\"},{\"productID\":4,\"poName\":\"Alexa Voice Remote (3rd Gen)\",\"quantity\":5,\"price\":49.99,\"currency\":\"CAD\"},{\"productID\":5,\"poName\":\"Yamaha F325D Acoustic Guitar\",\"quantity\":27,\"price\":199.99,\"currency\":\"USD\"},{\"productID\":6,\"poName\":\"Sony MDRZX110 Over-Ear Headphones (Black)\",\"quantity\":122,\"price\":530.2,\"currency\":\"HKD\"},{\"productID\":7,\"poName\":\"Skullcandy Jib Earbuds with Microphone, Black (S2DUYK-343)\",\"quantity\":69,\"price\":19.99,\"currency\":\"USD\"}]",
+							"",
+							"const response = pm.response.json();",
+							"pm.test(\"Status should be OK\", () => {",
+							"    pm.expect(response).to.eql(expected);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/products",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "baseURL",
+			"value": "http://localhost:8080/api"
+		}
+	]
+}

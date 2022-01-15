@@ -1,0 +1,203 @@
+openapi: 3.0.0
+info:
+  description: Inventory API
+  version: 1.0.0
+  title: Simple Inventory API
+  contact:
+    email: siu.ka@northeastern.edu
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  - url: 'https://localhost:8080/'
+tags:
+  - name: products
+    description: Access to inventory items
+  - name: productLog
+    description: Access to inventory log
+paths:
+  /api/products/exportToCSV:
+    get:
+      tags:
+        - products
+      summary: Returns inventory in CSV format
+      responses:
+        '200':
+          description: A CSV file
+          content:
+            text/pdf:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Not found
+  /api/products:
+    get:
+      tags:
+        - products
+      summary: Searches all inventory items
+      operationId: searchInventory
+      description: Access entire inventory
+      responses:
+        '200':
+          description: Status OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        '404':
+          description: Not found
+    post:
+      tags:
+        - products
+      summary: Create a product
+      description: A product object is created
+      operationId: createProduct
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Products'
+      responses:
+        '201':
+          description: Created
+        '404':
+          description: Not Found
+
+  /api/products/{productID}:
+    get:
+      tags:
+        - products
+      summary: Searches inventory for items based on productID
+      operationId: searchProductID
+      description: Specific productID is required to access all columns related to the inventory item
+      parameters:
+        - name: productID
+          in: path
+          description: ID of product to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Status OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Products'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Product not found
+    delete:
+      tags:
+        - products
+      summary: Delete an inventory item
+      description: Delete a product object
+      operationId: deleteProduct
+      parameters:
+        - name: productID
+          in: path
+          description: The product that needs to be deleted
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+    put:
+      tags:
+        - products
+      summary: Updated a product
+      description: Inventory update based on productID
+      operationId: updateProduct
+      parameters:
+        - name: productID
+          in: path
+          description: Product that needs to be updated
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Products'
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+  /api/productlog:
+    get:
+      tags:
+        - productLog
+      summary: Searches entire log history
+      operationId: searchProductLog
+      description: Retrieves all product log objects
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductLog'
+        '404':
+          description: Not found
+components:
+  schemas:
+    Products:
+      type: object
+      required:
+        - productID
+        - poName
+        - quantity
+        - price
+        - currency
+      properties:
+        productID:
+          type: integer
+          example: 12345
+          minimum: 0
+        poName:
+          type: string
+          example: 'Collier Sofa - Dark Blue'
+        quantity:
+          type: integer
+          example: 5
+        price:
+          type: number
+          format: double
+          example: 10.50
+          minimum: 0
+        currency:
+          type: string
+          example: 'USD'
+    ProductLog:
+      type: object
+      required:
+        - logID
+        - productID
+        - quantity
+        - date
+      properties:
+        logID:
+          type: integer
+          example: 12345
+          minimum: 0
+        productID:
+          type: integer
+          example: 12345
+          minimum: 0
+        quantity:
+          type: integer
+          example: 5
+          minimum: 0
+        date:
+          type: string
+          format: date
+          example: '2016-08-29'
