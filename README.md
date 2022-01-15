@@ -15,7 +15,7 @@ In this project, an inventory tracking web API was developed for a logistics com
 
 <img width="623" alt="Screen Shot 2022-01-15 at 3 14 14 PM" src="https://user-images.githubusercontent.com/93673736/149636404-a8c88c9b-9cb7-4be4-a8c1-3a43d77fc657.png">
 
-Multiple frameworks were utilized during the development of this web API but communicating with the API requires the use of the the Postman API platform. Postman is an API platform used to ensure that the process of sending and recieving data from our web API is functioning properly. It is important to consider that the Postman API platform is simply a way to communicate and interact with our web API. Postman is not a tool for performance testing or for dealing with user interactions.
+Multiple frameworks were utilized during the development of this web API but communicating with the API requires the use of the Postman API platform. Postman is an API platform used to ensure that the process of sending and recieving data from our web API is functioning properly. It is important to consider that the Postman API platform is simply a way to communicate and interact with our web API. Postman is not a tool for performance testing or for dealing with user interactions.
 
 #### Database:
 
