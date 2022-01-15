@@ -38,7 +38,7 @@ The ProductLog table was initially created for the purpose of implementing a fea
 
 ## Getting Started
 
-Below are instructions and steps for running the web API.
+Below are instructions and steps for running the web API as well as Postman.
 
 ### Prerequisites
 
@@ -46,7 +46,7 @@ Download and install the latest version of [MySQL Workbench](https://dev.mysql.c
 
 ### Installation
 1.	Download the code by either:
-    -	Downloading the ZIP file and unzip the file. Open the unzip file using IntelliJ. 
+    - Downloading the ZIP file and unzip the file. Open the unzip file using IntelliJ. 
     - Opening IntelliJ > Get from VCS > URL
     
       ![image](https://user-images.githubusercontent.com/93673736/149423967-cc9640b1-9ba9-437f-a8ba-defbedf7381e.png)
@@ -108,7 +108,7 @@ Download and install the latest version of [MySQL Workbench](https://dev.mysql.c
 
     <img width="932" alt="Screen Shot 2022-01-15 at 4 48 27 PM" src="https://user-images.githubusercontent.com/93673736/149638771-4cc1743f-afe4-45e7-81fd-7bc3caab4e8d.png">
 
-5. Change the iteration from 1 to 10 and check "Save responses". 
+5. Change the iteration from 1 to 10 and check "Save responses". The run order of the tests should NOT be changed.
 
     <img width="685" alt="Screen Shot 2022-01-15 at 4 51 22 PM" src="https://user-images.githubusercontent.com/93673736/149638830-41d601b9-48b7-4ca9-a539-32677b739b7d.png">
 
